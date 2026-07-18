@@ -1,0 +1,234 @@
+/* Core Global Settings */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #202124;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #ffffff;
+}
+
+/* Header Navbar Links Alignment (Flexbox) */
+.header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px 24px;
+  height: 60px;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.nav-right a {
+  text-decoration: none;
+  color: rgba(0,0,0,0.87);
+  font-size: 13px;
+}
+
+.nav-right a:hover {
+  text-decoration: underline;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  fill: #5f6368;
+  display: flex;
+  align-items: center;
+}
+
+.icon-btn:hover {
+  background-color: rgba(60,64,67,0.08);
+}
+
+.sign-in-btn {
+  background-color: #1a73e8;
+  color: white;
+  border: none;
+  padding: 9px 23px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.sign-in-btn:hover {
+  background-color: #1557b0;
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+}
+
+/* Main Display Center Layout Area */
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 5%; /* Mimics real desktop positioning offset */
+  width: 100%;
+}
+
+/* Typographic Logo Rendering */
+.logo-container {
+  font-size: 90px;
+  font-weight: 500;
+  letter-spacing: -2.5px;
+  margin-bottom: 28px;
+  user-select: none;
+}
+
+.g-blue { color: #4285F4; }
+.g-red { color: #EA4335; }
+.g-yellow { color: #FBBC05; }
+.g-green { color: #34A853; }
+
+/* The Search Bar Component Layout */
+.search-box-container {
+  width: 100%;
+  max-width: 584px;
+  padding: 0 20px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid #dfe1e5;
+  border-radius: 24px;
+  height: 46px;
+  padding: 0 14px;
+  transition: box-shadow 0.1s, border-color 0.1s;
+}
+
+.search-box:hover, .search-box:focus-within {
+  background-color: #fff;
+  border-color: rgba(223,225,229,0);
+  box-shadow: 0 1px 6px rgba(32,33,36,0.28);
+}
+
+.search-icon svg, .mic-icon svg {
+  width: 20px;
+  height: 20px;
+  fill: #9aa0a6;
+  display: flex;
+}
+
+.search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 0 10px;
+  font-size: 16px;
+  color: #000;
+  background-color: transparent;
+}
+
+/* Button Set Formatting */
+.buttons-container {
+  margin-top: 29px;
+  display: flex;
+  gap: 12px;
+}
+
+.google-btn {
+  background-color: #f8f9fa;
+  border: 1px solid #f8f9fa;
+  border-radius: 4px;
+  color: #3c4043;
+  font-size: 14px;
+  padding: 0 16px;
+  line-height: 27px;
+  height: 36px;
+  min-width: 54px;
+  text-align: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.google-btn:hover {
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  background-color: #f8f9fa;
+  border: 1px solid #dadce0;
+  color: #202124;
+}
+
+.language-offer {
+  font-size: 13px;
+  margin-top: 28px;
+  color: #4d5156;
+}
+
+.language-offer a {
+  color: #1a0dab;
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.language-offer a:hover {
+  text-decoration: underline;
+}
+
+/* Two-tier Google Footer */
+.footer {
+  background-color: #f2f2f2;
+  width: 100%;
+}
+
+.footer-row {
+  display: flex;
+  padding: 15px 30px;
+  color: #70757a;
+}
+
+.country-row {
+  border-bottom: 1px solid #dadce0;
+  font-size: 15px;
+}
+
+.links-row {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-left, .footer-right {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.footer-row a {
+  color: #70757a;
+  text-decoration: none;
+}
+
+.footer-row a:hover {
+  text-decoration: underline;
+}
+
+/* Quick Media Query Adjustment for Mobile Screen Viewports */
+@media (max-width: 584px) {
+  .logo-container {
+    font-size: 60px;
+  }
+  .links-row {
+    justify-content: center;
+  }
+  .footer-left, .footer-right {
+    justify-content: center;
+    gap: 15px;
+  }
+}
