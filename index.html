@@ -1,82 +1,311 @@
-<link rel="stylesheet" href="style.css">
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ApexFlow - Fictional Startup</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Clone</title>
+    <style>
+        /* CSS Reset & Variable Definitions */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --font-family: Arial, sans-serif;
+            --text-color: #202124;
+            --link-color: #70757a;
+            --bg-hover: #f8f9fa;
+            --border-color: #dadce0;
+        }
+
+        body {
+            font-family: var(--font-family);
+            color: var(--text-color);
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #ffffff;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Header Navigation */
+        header {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 16px 24px;
+            height: 60px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .nav-links a {
+            font-size: 13px;
+            color: rgba(0,0,0,0.87);
+        }
+
+        /* Icon styling matching Google's menu layout */
+        .apps-icon {
+            padding: 8px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .apps-icon:hover {
+            background-color: rgba(60,64,67,0.08);
+        }
+
+        .sign-in-btn {
+            background-color: #1a73e8;
+            color: white;
+            padding: 9px 23px;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 14px;
+            letter-spacing: 0.25px;
+            transition: background-color 0.2s;
+        }
+
+        .sign-in-btn:hover {
+            background-color: #1557b0;
+            text-decoration: none;
+            box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+        }
+
+        /* Main Search Container Area */
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 120px; /* Offset vertical centering to push search box up slightly */
+        }
+
+        .logo {
+            margin-bottom: 28px;
+            user-select: none;
+        }
+
+        .search-box-container {
+            width: 100%;
+            max-width: 584px;
+            padding: 0 20px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 46px;
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 0 14px;
+            background: #fff;
+            transition: box-shadow 0.1s;
+        }
+
+        .search-box:hover, .search-box:focus-within {
+            background-color: #fff;
+            box-shadow: 0 1px 6px rgba(32,33,36,0.28);
+            border-color: rgba(223,225,229,0);
+        }
+
+        .search-icon, .mic-icon, .camera-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .search-icon svg {
+            fill: #9aa0a6;
+            width: 20px;
+            height: 20px;
+        }
+
+        .search-input {
+            flex: 1;
+            height: 100%;
+            border: none;
+            outline: none;
+            padding: 0 12px;
+            font-size: 16px;
+            color: var(--text-color);
+            background: transparent;
+        }
+
+        .input-tools {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .input-tools svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Search Buttons Layout */
+        .button-container {
+            margin-top: 29px;
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            background-color: #f8f9fa;
+            border: 1px solid #f8f9fa;
+            border-radius: 4px;
+            color: #3c4043;
+            font-size: 14px;
+            padding: 0 16px;
+            line-height: 34px;
+            height: 36px;
+            min-width: 54px;
+            text-align: center;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .btn:hover {
+            box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+            background-image: -webkit-linear-gradient(top,#f8f9fa,#f1f3f4);
+            background-color: #f8f9fa;
+            border: 1px solid #c6c6c6;
+            color: #202124;
+        }
+
+        .btn:focus {
+            border: 1px solid #1a73e8;
+            outline: none;
+        }
+
+        /* Dual-Tier Sticky Footer Components */
+        footer {
+            background-color: #f2f2f2;
+            border-top: 1px solid var(--border-color);
+            width: 100%;
+        }
+
+        .footer-top {
+            padding: 15px 30px;
+            border-bottom: 1px solid var(--border-color);
+            color: rgba(0,0,0,0.54);
+            font-size: 15px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            padding: 15px;
+            color: #70757a;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- 1. HEADER SECTION -->
-  <header class="navbar">
-    <div class="logo">ApexFlow</div>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="#features">Features</a></li>
-        <li><a href="#testimonials">Testimonials</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- HERO BANNER -->
-  <section class="hero">
-    <h1>Work at the Speed of Thought</h1>
-    <p>The automated command center for modern remote engineering teams.</p>
-    <a href="#" class="btn-primary">Get Started Free</a>
-  </section>
-
-  <!-- 2. FEATURE HIGHLIGHTS SECTION (Using CSS Grid) -->
-  <section id="features" class="features-section">
-    <h2 class="section-title">Engineered for Performance</h2>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">⚡</div>
-        <h3>Instant Pipeline</h3>
-        <p>Deploy production-ready features globally in less than 30 seconds with automatic configuration.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🛡️</div>
-        <h3>Zero-Trust Security</h3>
-        <p>Identity protection and end-to-end data encryption embedded directly inside your development cycle.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📊</div>
-        <h3>Real-time Metrics</h3>
-        <p>Track team velocity, error tracking, and bandwidth bottlenecks directly from your main dashboard.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 3. TESTIMONIALS SECTION (Using Flexbox) -->
-  <section id="testimonials" class="testimonials-section">
-    <h2 class="section-title">Trusted by Tech Leaders</h2>
-    <div class="testimonials-container">
-      <div class="testimonial-card">
-        <p class="quote">"ApexFlow completely reshaped how our engineering department coordinates. Deployment blockages dropped to zero within our first week."</p>
-        <div class="user-info">
-          <strong>Sarah Jenkins</strong>
-          <span>CTO, InnovateLabs</span>
+    <!-- Header containing system utility options -->
+    <header>
+        <div class="nav-links">
+            <a href="#">Gmail</a>
+            <a href="#">Images</a>
+            <div class="apps-icon" title="Google apps">
+                <svg viewBox="0 0 24 24" width="24" height="24" fill="#5f6368">
+                    <path d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6-12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 12c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+                </svg>
+            </div>
+            <a href="#" class="sign-in-btn">Sign in</a>
         </div>
-      </div>
-      <div class="testimonial-card">
-        <p class="quote">"The automated pipeline metrics saved us countless hours of manual diagnostics. It's an indispensable asset for remote engineering."</p>
-        <div class="user-info">
-          <strong>Marcus Chen</strong>
-          <span>VP of Engineering, CloudScale</span>
-        </div>
-      </div>
-    </div>
-  </section>
+    </header>
 
-  <!-- 4. FOOTER SECTION -->
-  <footer>
-    <div class="footer-content">
-      <p>&copy; 2026 ApexFlow Inc. All rights reserved. Fully responsive concept built with HTML5 & CSS3.</p>
-    </div>
-  </footer>
+    <!-- Main Workspace Area -->
+    <main>
+        <!-- Standard Google Logo Asset Integration -->
+        <img class="logo" src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google Logo" width="272" height="92">
+        
+        <!-- Center Search Core Block Structure -->
+        <div class="search-box-container">
+            <div class="search-box">
+                <div class="search-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
+                    </svg>
+                </div>
+                <input type="text" class="search-input" autofocus>
+                <div class="input-tools">
+                    <!-- Google Mic Asset representation -->
+                    <div class="mic-icon" title="Search by voice">
+                        <svg viewBox="0 0 24 24">
+                            <path fill="#4285F4" d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                            <path fill="#34A853" d="M12 17c-3.31 0-6-2.69-6-6H4c0 4.07 3.06 7.43 7 7.93V22h2v-3.07c3.94-.5 7-3.86 7-7.93h-2c0 3.31-2.69 6-6 6z"/>
+                        </svg>
+                    </div>
+                    <!-- Google Lens Asset representation -->
+                    <div class="camera-icon" title="Search by image">
+                        <svg viewBox="0 0 24 24">
+                            <path fill="#4285F4" d="M12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/>
+                            <path fill="#EA4335" d="M9 4.14A3 3 0 0 1 11.14 3h1.72A3 3 0 0 1 15 4.14L15.78 5H19a3 3 0 0 1 3 3v9a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3h3.22L9 4.14zM12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button class="btn">Google Search</button>
+            <button class="btn">I'm Feeling Lucky</button>
+        </div>
+    </main>
+
+    <!-- Contextual Metadata Footer Structure -->
+    <footer>
+        <div class="footer-top">
+            India
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-links">
+                <a href="#">About</a>
+                <a href="#">Advertising</a>
+                <a href="#">Business</a>
+                <a href="#">How Search works</a>
+            </div>
+            <div class="footer-links">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Settings</a>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
